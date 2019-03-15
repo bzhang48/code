@@ -1,10 +1,6 @@
 package hashMap;
 import java.util.ArrayList;
 import java.util.Iterator;
-/*
- * Name: Bowen Zhang
- * ID: 260707007
- */
 
 public class MyHashTable<K, V> {
 	/*
