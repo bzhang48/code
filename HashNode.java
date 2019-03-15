@@ -1,8 +1,5 @@
 package hashMap;
-/*
- * Name: Bowen Zhang
- * ID: 260707007
- */
+
 public class HashNode<K, V> implements Cloneable {
 	private V value;
 	private K key;
