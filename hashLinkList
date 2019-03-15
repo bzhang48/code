@@ -1,0 +1,132 @@
+package hashMap;
+public class HashLinkedList<K, V> {
+	/*
+	 * Fields
+	 */
+	private HashNode<K,V> head;
+
+	private Integer size;
+
+	/*
+	 * Constructor
+	 */
+
+	HashLinkedList(){
+		head = null;
+		size = 0;
+	}
+
+
+	public void add(K key, V value){
+		
+		HashNode<K,V> newNode=new HashNode<K,V>(key, value);
+		if(head==null){
+			this.head=newNode;
+		}else{
+			newNode.next=head;
+			head=newNode;
+		}
+		size++;
+		
+	}
+
+	/*
+	 * Get Hash(node) by key
+	 * returns the node with key
+	 */
+
+	public HashNode<K,V> getListNode(K key){
+		
+		
+		//end if the list is empty
+		if(head==null){
+			return null;
+		}
+		HashNode<K,V> current=head;
+		while(current!=null){
+			if(current.getKey().equals(key)){
+				//exit when find the key
+				return current;
+			}
+			current=current.next;
+		}
+		//return null when the key is not in the whole list
+		return null;
+		
+	}
+
+
+	/*
+	 * Remove the head node of the list
+	 * Note: Used by remove method and next method of hash table Iterator
+	 */
+
+	public HashNode<K,V> removeFirst(){
+		
+		HashNode<K,V> temp=head;
+		if(temp==null){
+			return null;
+		}else{
+			this.head=this.head.next;
+			this.size--;
+			return temp;
+		}
+		
+	}
+
+	/*
+	 * Remove Node by key from linked list 
+	 */
+
+	public HashNode<K,V> remove(K key){
+		
+		//HashNode<K,V> nodeRemove=getListNode(key);
+		if(this.head==null){
+			return null;
+		}else if(this.head.getKey().equals(key)){
+			return removeFirst();
+		}else{
+			HashNode<K,V> nodeBefore=this.head;
+			while(nodeBefore.next!=null){
+				//check the aim node
+				if(nodeBefore.next.getKey().equals(key)){
+					HashNode<K,V> nodeRemove=nodeBefore.next;
+					nodeBefore.next=nodeBefore.next.next;
+					this.size--;
+					return nodeRemove;
+				}
+				nodeBefore=nodeBefore.next;
+			}
+		}
+		//else conditions
+		
+		return null; 
+	}
+
+
+
+	/*
+	 * Delete the whole linked list
+	 */
+	public void clear(){
+		head = null;
+		size = 0;
+	}
+	/*
+	 * Check if the list is empty
+	 */
+
+	boolean isEmpty(){
+		return size == 0? true:false;
+	}
+
+	int size(){
+		return this.size;
+	}
+
+	public HashNode<K,V> getHead(){
+		return this.head;
+	}
+
+
+}
